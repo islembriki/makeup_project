@@ -1,0 +1,17 @@
+{#Afficher chaque produit ajouté au panier avec sa quantité et son prix,#}
+{# puis afficher le total, et un lien pour passer commande.#}
+
+{# templates/cart/index.html.twig #}
+<h1>Mon Panier</h1>
+
+<ul>
+    {% for item in items %}
+        <li>
+            {{ item.product.name }} - {{ item.quantity }} x {{ item.product.price }}€
+        </li>
+    {% endfor %}
+</ul>
+
+<p>Total : {{ total }} €</p>
+
+<a href="{{ path('order_checkout') }}">Passer la commande</a>
