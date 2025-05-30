@@ -1,0 +1,9 @@
+{% if field.value|length > 0 %}
+    <ul>
+        {% for product in field.value %}
+            <li>{{ product.name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <span class="badge bg-secondary">No products</span>
+{% endif %}

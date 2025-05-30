@@ -12,6 +12,16 @@ use App\Entity\Category;
 use App\Entity\User;
 use App\Entity\Order;
 use App\Entity\OrderItem;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -52,7 +62,7 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Makeup Project');
     }
 
-    public function configureMenuItems(): iterable
+   /* public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Products', 'fa fa-box', Product::class);
@@ -60,7 +70,20 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Users', 'fa fa-user-circle',User::class);
         yield MenuItem::linkToCrud('orders','fa fa-shopping-cart',Order::class);
         yield MenuItem::linkToCrud('orderItems','fa fa-tag',OrderItem::class);
-    }
+    }*/
+    
+    public function configureMenuItems(): iterable
+{
+    yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+    yield MenuItem::section('Catalog');
+    yield MenuItem::linkToCrud('Categories', 'fa fa-tags', Category::class);
+    yield MenuItem::linkToCrud('Products', 'fa fa-box', Product::class);
+    yield MenuItem::section('Sales');
+    yield MenuItem::linkToCrud('Orders', 'fa fa-shopping-cart', Order::class);
+    yield MenuItem::linkToCrud('Order Items', 'fa fa-list', OrderItem::class);
+    yield MenuItem::section('Users');
+    yield MenuItem::linkToCrud('Customers', 'fa fa-users', User::class);
+}
 
     public function configureFields(string $pageName): iterable
     {

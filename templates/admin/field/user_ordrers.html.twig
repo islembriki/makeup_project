@@ -1,0 +1,12 @@
+{% if field.value|length > 0 %}
+    <div class="orders-list">
+        {% for order in field.value %}
+            <div class="order-item">
+                #{{ order.id }} - {{ order.madeAt|date('Y-m-d') }} 
+                ({{ order.status }} - ${{ order.total }})
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <span class="badge bg-secondary">No orders</span>
+{% endif %}
