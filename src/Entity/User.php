@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -19,6 +21,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 180)]
+    private ?string $username = null;
+    #[ORM\Column(length: 180)]
+    private ?string $firstname = null;
+    #[ORM\Column(length: 180)]
+    private ?string $lastname = null;
+    #[ORM\Column(length: 180)]
+    private ?string $address = null;
+    #[ORM\Column(length: 180)]
+    private ?string $city = null;
+    #[ORM\Column(length: 180)]
+    private ?string $country = null;
+    #[ORM\Column(length: 180)]
+    private ?string $phone = null;
+    #[ORM\Column(length: 180)]
+    private ?string $postalcode = null;
+
     /**
      * @var list<string> The user roles
      */
@@ -30,6 +49,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+
+    /**
+     * @var Collection<int, Order>
+     */
+    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
+    private Collection $orders;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+        $this->roles = ['ROLE_USER'];
+    }
 
     public function getId(): ?int
     {
@@ -103,4 +135,112 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function setUsername(string $username): static
+    {
+        $this->username = $username;
+        return $this;
+    }
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
+        return $this;
+    }
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
+        return $this;
+    }
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+    public function setAddress(string $address): static
+    {
+        $this->address = $address;
+        return $this;
+    }
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+    public function setCity(string $city): static
+    {
+        $this->city = $city;
+        return $this;
+    }
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+    public function setCountry(string $country): static
+    {
+        $this->country = $country;
+        return $this;
+    }
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+    public function getPostalcode(): ?string
+    {
+        return $this->postalcode;
+    }
+    public function setPostalcode(string $postalcode): static
+    {
+        $this->postalcode = $postalcode;
+        return $this;
+    }
+    public function __toString():String
+        {return $this->firstname.' '.$this->lastname;}
+    public function getFullName():String
+        {return $this->firstname.' '.$this->lastname;}
+
 }
