@@ -21,21 +21,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180,nullable: true)]
     private ?string $username = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180,nullable: true)]
     private ?string $firstname = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180,nullable: true)]
     private ?string $lastname = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180,nullable: true)]
     private ?string $address = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180,nullable: true)]
     private ?string $city = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180,nullable: true)]
     private ?string $country = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180,nullable: true)]
     private ?string $phone = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180,nullable: true)]
     private ?string $postalcode = null;
 
     /**
