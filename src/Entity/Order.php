@@ -22,7 +22,7 @@ class Order
     private ?User $user = null;
 
     #[ORM\Column(Types::DATETIME_MUTABLE,nullable: true)]
-    private ?\DateTimeInterface $madeat = null;
+    private ?\DateTimeInterface $CreatedAt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
@@ -61,14 +61,14 @@ class Order
         return $this;
     }
 
-    public function getMadeat(): ?\DateTime
+    public function getCreatedAt(): ?\DateTime
     {
-        return $this->madeat;
+        return $this->CreatedAt;
     }
 
-    public function setMadeat(?\DateTime $madeat): static
+    public function setCreatedAt(?\DateTime $CreatedAt): static
     {
-        $this->madeat = $madeat;
+        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }

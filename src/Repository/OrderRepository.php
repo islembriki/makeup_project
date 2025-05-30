@@ -15,7 +15,37 @@ class OrderRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Order::class);
     }
+    //displays later on all the history of commands a user did
+    public function findOrdersWithItemsByUser(User $user): array
+    {
+        return $this->createQueryBuilder('o')
+            ->leftJoin('o.orderItems', 'oi')
+            ->addSelect('oi')
+            ->leftJoin('oi.product', 'p')
+            ->addSelect('p')
+            ->andWhere('o.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('o.CreatedAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function save(Order $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
 
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Order $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
     //    /**
     //     * @return Order[] Returns an array of Order objects
     //     */

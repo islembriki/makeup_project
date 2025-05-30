@@ -15,6 +15,31 @@ class CategoryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Category::class);
     }
+    public function findAllCategories(): array
+    {
+        return $this->findAll();
+    }
+    public function findOneByName(string $name): ?Category
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
+    public function save(Category $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Category $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 
     //    /**
     //     * @return Category[] Returns an array of Category objects
