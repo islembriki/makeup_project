@@ -7,8 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[Vich\Uploadable]
 class Product
 {
     #[ORM\Id]
@@ -87,16 +91,20 @@ class Product
         return $this;
     }
 
-    public function getImage(): ?string
+    #[Vich\UploadableField(mapping: "product_image", fileNameProperty: "image")]
+    private ?File $imageFile = null;
+    public function setImageFile(?File $imageFile = null): void
     {
-        return $this->image;
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
     }
 
-    public function setImage(?string $image): static
+    public function getImageFile(): ?File
     {
-        $this->image = $image;
-
-        return $this;
+        return $this->imageFile;
     }
 
     public function getStock(): ?int
