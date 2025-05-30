@@ -39,8 +39,8 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    //#[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    //private ?\DateTimeImmutable $updatedAt = null;
 
     /**
      * @var Collection<int, OrderItem>

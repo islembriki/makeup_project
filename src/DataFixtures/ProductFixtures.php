@@ -55,7 +55,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             //$product->setImageFile($data['image']);
             $product->setStock($data['stock']);
             $product->setCategory($categories[$data['category']]);
-            $product->setUpdatedAt(new DateTimeImmutable());
+            //$product->setUpdatedAt(new DateTimeImmutable());
 
             $manager->persist($product);
         }

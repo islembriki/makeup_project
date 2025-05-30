@@ -15,7 +15,7 @@ class CategoryFixtures extends Fixture
             ['name' => 'Lipstick', 'description' => 'Various shades of lipstick.'],
             ['name' => 'Foundation', 'description' => 'Different types of foundation for all skin tones.'],
             ['name' => 'Skincare', 'description' => 'Products for facial and body care.'],
-            ['name' => 'EyeMakeup', 'description' => 'Eye makeup products with multiple colors.'],
+            ['name' => 'Eyeshadow', 'description' => 'Eye makeup products with multiple colors.'],
             ['name' => 'Blush', 'description' => 'Add color to your cheeks.'],
         ];
 
