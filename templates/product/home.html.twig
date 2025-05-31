@@ -1,8 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Welcome to Our Shop{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur la page d'accueil</h1>
-    <p>Ceci est la page d'accueil après connexion.</p>
+    <div class="landing-hero text-white text-center d-flex align-items-center justify-content-center" style="height: 100vh; background: url('{{ asset('images/landing.jpeg') }}') center/cover no-repeat;">
+        <div class="bg-dark bg-opacity-50 p-4 rounded">
+            <h1 class="display-4">Find What Inspires You</h1>
+            <p class="lead">Unique products for unique people.</p>
+            <a href="#get-in-touch" class="btn btn-outline-light mt-3">
+                Get in touch ↓
+            </a>
+        </div>
+    </div>
+
+    <section id="get-in-touch" class="text-center p-5 bg-light">
+        <h2>Let's stay connected!</h2>
+        <p>Browse our products or contact us to learn more.</p>
+    </section>
 {% endblock %}
