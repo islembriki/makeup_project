@@ -42,7 +42,33 @@ class RegistrationForm extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            ])  ->add('username')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('address', null, [
+                'required' => false,
             ])
+            ->add('city', null, [
+                'required' => false,
+            ])
+            ->add('country', null, [
+                'required' => false,
+            ])
+            ->add('phone', null, [
+                'required' => false,
+            ])
+            ->add('postalCode', null, [
+                'required' => false,
+            ])
+            ->add('email')
+            ->add('plainPassword', PasswordType::class, [
+                'label' => 'Password',
+                'mapped' => false,
+                'attr' => ['autocomplete' => 'new-password'],
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+            ]);
         ;
     }
 
