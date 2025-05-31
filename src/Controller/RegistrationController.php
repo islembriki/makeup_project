@@ -51,9 +51,11 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 
-            // do anything else you need here, like send an email
+            // Add a flash message to inform the user that they need to verify their email
+            $this->addFlash('success', 'Registration successful! Please check your email to verify your account before logging in.');
 
-            return $security->login($user, LoginFormAuthenticator::class, 'main');
+            // Redirect to login page instead of automatically logging in
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -88,6 +90,6 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_login');
     }
 }
