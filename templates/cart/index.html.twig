@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('/images/landing.jpeg') center/cover no-repeat;
+            background: url('{{ asset('images/landing.jpeg') }}') center/cover no-repeat;
             padding: 40px;
             color: #333;
         }
@@ -63,25 +63,27 @@
     </style>
 </head>
 <body>
-    <div class="cart-container">
-        <h1>🛒 Mon Panier</h1>
+<div class="cart-container">
+    <h1>🛒 Mon Panier</h1>
 
+    <ul>
+        {% for item in items %}
+            <li>
+                <form action="{{ path('cart_update', {'id': item.product.id}) }}" method="post" style="display: inline;">
+                    {{ item.product.name }} -
+                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" style="width: 50px;">
+                    * {{ item.product.price }}£
 
+                    <button type="submit">Mettre à jour</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
 
-        <ul>
-            {%for item in items %}
+    <div class="total">Total : {{ total }}£</div>
 
-               <li>
-                    {{ item.product.name }} - {{item.quantity}} * {{ item.product.price }}£
-               </li>
-            {% endfor %}
-        </ul>
-
-        <div class="total">Total : {{ total }}</div>
-
-
-
-        <a href="{{ path('order_checkout') }}" class="checkout-link">Passer la commande</a>
-    </div>
+    <a href="{{ path('order_checkout') }}" class="checkout-link">Passer la commande</a>
+</div>
 </body>
+
 </html>
