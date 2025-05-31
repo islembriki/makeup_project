@@ -1,106 +1,50 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Mon Panier</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('{{ asset('images/landing.jpeg') }}') center/cover no-repeat;
-            padding: 40px;
-            color: #333;
-        }
+{% extends 'base.html.twig' %}
 
-        .cart-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+{% block title %}Checkout{% endblock %}
 
-        h1 {
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Checkout</h1>
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin-bottom: 20px;
-        }
+    {% if items is empty %}
+        <div class="alert alert-warning">
+            Your cart is empty. <a href="{{ path('product_list') }}">Browse products</a>.
+        </div>
+    {% else %}
+        <table class="table table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th class="text-end">Unit Price</th>
+                    <th class="text-end">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td class="text-end">{{ item.product.price|number_format(2) }} €</td>
+                        <td class="text-end">{{ (item.product.price * item.quantity)|number_format(2) }} €</td>
+                    </tr>
+                {% endfor %}
+                <tr class="fw-bold">
+                    <td colspan="3" class="text-end">Total:</td>
+                    <td class="text-end">{{ total|number_format(2) }} €</td>
+                </tr>
+            </tbody>
+        </table>
 
-        li {
-            background-color: #f0f0f0;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            font-size: 1.1em;
-        }
+        <div class="text-end">
+            <a href="{{ path('order_checkout') }}" class="btn btn-success btn-lg">
+                <i class="bi bi-credit-card"></i> Buy Now
+            </a>
 
-        .total {
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        .checkout-link {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: #6c2eb9;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-            margin-right: 10px;
-        }
-
-        .checkout-link:hover {
-            background-color: #571fa1;
-        }
-
-        .update-btn {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 20px;
-        }
-
-        .update-btn:hover {
-            background-color: #218838;
-        }
-    </style>
-</head>
-<body>
-<div class="cart-container">
-    <h1>🛒 Mon Panier</h1>
-
-    <form action="{{ path('cart_update_all') }}" method="post">
-        <ul>
-            {% for item in items %}
-                <li>
-                    {{ item.product.name }} -
-                    <input type="number" name="quantities[{{ item.product.id }}]" value="{{ item.quantity }}" min="1" style="width: 50px;">
-                    * {{ item.product.price }}£
-                </li>
-            {% endfor %}
-        </ul>
-
-        <button type="submit" class="update-btn">Update Total</button>
-    </form>
-
-    <div class="total">Total : {{ total }}£</div>
-
-    <a href="{{ path('product_list') }}" class="checkout-link">Continue shopping</a>
-    <a href="{{ path('order_checkout') }}" class="checkout-link">Checkout</a>
+            <div class="confirmation-box">
+        </div>
+    
+        </div>
+    {% endif %}
 </div>
-</body>
-</html>
+{% endblock %}
