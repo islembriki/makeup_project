@@ -95,7 +95,8 @@
             // Create form and submit
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = '{{ path('cart_add', {'id': '__ID__'}) }}'.replace('__ID__', productId);
+            form.action = '{{ path('cart_add_continue', {'id': '__ID__'}) }}'.replace('__ID__', productId);
+
 
             const quantityInput = document.createElement('input');
             quantityInput.type = 'hidden';

@@ -35,6 +35,7 @@ class CartController extends AbstractController
         $this->addFlash('success', 'Cart updated successfully!');
         return $this->redirectToRoute('cart_index');
     }
+
     #[Route('/cart/add/{id}', name: 'cart_add')]
     public function add(Request $request, $id, CartService $cartService): Response
     {
@@ -88,6 +89,7 @@ class CartController extends AbstractController
         // Fallback to products list if no referer
         return $this->redirectToRoute('product_list'); // Adjust route name as needed
     }
+    
     // New route for adding to cart and going to checkout
     #[Route('/cart/add-checkout/{id}', name: 'cart_add_checkout')]
     public function addAndCheckout(Request $request, $id, CartService $cartService): Response
