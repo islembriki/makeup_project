@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6">
+            
+            <img src="{{ asset('images/no-image.jpeg') }}" alt="No image" class="img-fluid rounded shadow">
+            
+        </div>
+        <div class="col-md-6">
+            <h1>{{ product.name }}</h1>
+            <p class="lead">${{ product.price|number_format(2, '.', ',') }}</p>
+            <p>{{ product.description }}</p>
+
+            <form action="{{ path('cart_add', {'id': product.id}) }}" method="post">
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control" style="width: 100px;">
+                </div>
+                <button class="btn btn-success">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
