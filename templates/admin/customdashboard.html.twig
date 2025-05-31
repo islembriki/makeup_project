@@ -1,0 +1,21 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <h1>Bienvenue dans le tableau de bord d'administration</h1>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <h2>📦 Produits</h2>
+                <p>Gérez les produits, les stocks et les images.</p>
+                <a href="{{ ea_url().setController('App\\Controller\\Admin\\ProductCrudController') }}" class="btn btn-primary">Gérer les produits</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <h2>🛒 Commandes</h2>
+                <p>Suivi des commandes et gestion des articles.</p>
+                <a href="{{ ea_url().setController('App\\Controller\\Admin\\OrderCrudController') }}" class="btn btn-primary">Voir les commandes</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
