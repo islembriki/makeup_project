@@ -1,7 +1,10 @@
 <?php
+// src/Controller/Admin/DashboardController.php     
+// Ce fichier est responsable de la configuration du tableau de bord d'administration (partie amira)
+// Il utilise EasyAdminBundle pour créer une interface d'administration personnalisée
+// Il gère les entités Product, Category, User, Order et OrderItem
 
 namespace App\Controller\Admin;
-
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -12,7 +15,17 @@ use App\Entity\Category;
 use App\Entity\User;
 use App\Entity\Order;
 use App\Entity\OrderItem;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 
+//importe les types de champs nécessaires pour le formulaire d'upload d'image
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
@@ -21,29 +34,14 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
-    public function index(): Response
-    {
-        return parent::index();
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // 1.1) If you have enabled the "pretty URLs" feature:
-        // return $this->redirectToRoute('admin_user_index');
-        //
-        // 1.2) Same example but using the "ugly URLs" that were used in previous EasyAdmin versions:
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirectToRoute('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
+    // cette méthode index est appelée pour afficher le tableau de bord d'administration
+    public function index(): Response   
+    {           //ce twig template est utilisé pour customiser l'affichage de tableau de bord d'admin
+        
+       return $this->render('admin/customdashboard.html.twig', [              
+        'dashboard_title' => 'Makeup Project',
+    ]);
     }
 
     public function configureDashboard(): Dashboard
@@ -51,7 +49,7 @@ class DashboardController extends AbstractDashboardController
         return Dashboard::new()
             ->setTitle('Makeup Project');
     }
-
+  // cette méthode configure les éléments du menu de navigation dans le tableau de bord d'administration
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
@@ -61,7 +59,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('orders','fa fa-shopping-cart',Order::class);
         yield MenuItem::linkToCrud('orderItems','fa fa-tag',OrderItem::class);
     }
-
+ 
+    // cette méthode configure les champs à afficher dans le formulaire de création et d'édition des entités
     public function configureFields(string $pageName): iterable
     {
         return [
