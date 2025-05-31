@@ -12,17 +12,17 @@ final class LoginController extends AbstractController
 
     public function index(): Response
     {
-        // Check if user is logged in
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
 
-        // Check if user has ROLE_ADMIN
+
         if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
             return $this->redirectToRoute('admin');
         }
 
-        // Default for regular users
+
         return $this->render('product/home.html.twig', [
             'controller_name' => 'LoginController',
         ]);
