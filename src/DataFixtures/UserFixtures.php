@@ -27,6 +27,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
         $userAdmin=new User();
         $userAdmin->setEmail('admin123@gmail.com');
         $userAdmin->setRoles(['ROLE_ADMIN']);
+        $userAdmin->setIsVerified(true);
         $userAdmin->setPassword($this->passwordEncoder->hashPassword($userAdmin,'456'));
         $manager->persist($user1);
         $manager->persist($userAdmin);
