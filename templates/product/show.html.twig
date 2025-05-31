@@ -35,18 +35,6 @@
                     {% if app.user %}
                         <!-- Add to Cart Form -->
                         <div class="cart-actions border p-4 rounded bg-light">
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <label for="quantity" class="form-label">Quantity</label>
-                                    <input type="number"
-                                           id="quantity"
-                                           class="form-control"
-                                           value="1"
-                                           min="1"
-                                           max="10">
-                                </div>
-                            </div>
-
                             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                                 <!-- Add to Cart and Continue Shopping -->
                                 <button type="button"
@@ -75,11 +63,7 @@
                         </div>
                     {% endif %}
 
-                    <!-- Product Features -->
-                    <div class="product-features mt-4">
-                        <h5>Product Features:</h5>
-                        <h3  style="color: #99a6e6">{{ product.description }}</h3>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -103,7 +87,7 @@
 
     <script>
         function addToCartContinue(productId) {
-            const quantity = document.getElementById('quantity').value;
+            const quantity = 1; // Default quantity since slider is removed
             const overlay = document.getElementById('loading-overlay');
 
             overlay.classList.remove('d-none');
@@ -124,7 +108,7 @@
         }
 
         function addToCartCheckout(productId) {
-            const quantity = document.getElementById('quantity').value;
+            const quantity = 1; // Default quantity since slider is removed
             const overlay = document.getElementById('loading-overlay');
 
             overlay.classList.remove('d-none');
