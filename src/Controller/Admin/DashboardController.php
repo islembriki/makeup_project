@@ -49,7 +49,7 @@ class DashboardController extends AbstractDashboardController
         return Dashboard::new()
             ->setTitle('Makeup Project');
     }
-  // cette méthode configure les éléments du menu de navigation dans le tableau de bord d'administration
+  // cette méthode configure les elts du menu de navigation dans le tableau de bord d'administration
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
@@ -58,6 +58,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Users', 'fa fa-user-circle',User::class);
         yield MenuItem::linkToCrud('orders','fa fa-shopping-cart',Order::class);
         yield MenuItem::linkToCrud('orderItems','fa fa-tag',OrderItem::class);
+        yield MenuItem::linkToRoute('User Page', 'fa fa-user', 'product_list');       //takes you to the product list page
+        yield MenuItem::linkToLogout('Logout', 'fa fa-sign-out-alt', 'app_logout')      //link to the loggin page
+            ->setCssClass('nav-link text-danger');  //red style lel logout
+        
     }
  
     // cette méthode configure les champs à afficher dans le formulaire de création et d'édition des entités
