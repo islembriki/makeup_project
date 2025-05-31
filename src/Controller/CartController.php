@@ -51,4 +51,34 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute('cart_index');
     }
+
+    // New route for adding to cart and continuing shopping
+    #[Route('/cart/add-continue/{id}', name: 'cart_add_continue')]
+    public function addAndContinue(Request $request, $id, CartService $cartService): Response
+    {
+        $quantity = $request->request->getInt('quantity', 1);
+        $cartService->add($id, $quantity);
+
+        // Add success message
+        $this->addFlash('success', 'Product added to cart successfully!');
+
+        // Redirect back to the product page or products list
+        $referer = $request->headers->get('referer');
+        if ($referer) {
+            return $this->redirect($referer);
+        }
+
+        // Fallback to products list if no referer
+        return $this->redirectToRoute('product_list'); // Adjust route name as needed
+    }
+    // New route for adding to cart and going to checkout
+    #[Route('/cart/add-checkout/{id}', name: 'cart_add_checkout')]
+    public function addAndCheckout(Request $request, $id, CartService $cartService): Response
+    {
+        $quantity = $request->request->getInt('quantity', 1);
+        $cartService->add($id, $quantity);
+
+        // Redirect directly to checkout
+        return $this->redirectToRoute('order_checkout');
+    }
 }
