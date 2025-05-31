@@ -65,10 +65,22 @@
 <body>
     <div class="cart-container">
         <h1>🛒 Mon Panier</h1>
+
+
+
         <ul>
-            <li>Red Velvet Lipstick - 1 x 15.99€</li>
+            {%for item in items %}
+
+               <li>
+                    {{ item.product.name }} - {{item.quantity}} * {{ item.product.price }}£
+               </li>
+            {% endfor %}
         </ul>
-        <div class="total">Total : 15.99 €</div>
+
+        <div class="total">Total : {{ total }}</div>
+
+
+
         <a href="{{ path('order_checkout') }}" class="checkout-link">Passer la commande</a>
     </div>
 </body>

@@ -35,7 +35,7 @@ class OrderService
             $orderItem->setProduct($item['product']); // Produit associé à l'item
             $orderItem->setQuantity($item['quantity']); // Quantité achetée
             $orderItem->setPrice($item['product']->getPrice()); // Prix unitaire
-            $orderItem->setOrder($order); // Lien avec la commande
+            $orderItem->setOrderref($order); // Lien avec la commande
             $this->em->persist($orderItem); // Prépare l’enregistrement
         }
 

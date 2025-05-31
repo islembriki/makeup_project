@@ -25,7 +25,7 @@ class OrderController extends AbstractController
     public function myOrders(OrderRepository $orderRepo): Response
     {
         //recherche des commandes de l'utilisateur actuel
-        $orders = $orderRepo->findOrdersWithItemsByUser($this->getUser());
+        $orders = $orderRepo->findOrdersWithItemsByUser($orderRepo->getUser());
 
 
 
