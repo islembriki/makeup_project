@@ -43,7 +43,7 @@ class Product
     private ?Category $category = null;
 
     //#[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    //private ?\DateTimeImmutable $updatedAt = null;
+  //  private ?\DateTimeImmutable $updatedAt = null;
 
     /**
      * @var Collection<int, OrderItem>
@@ -97,8 +97,8 @@ class Product
         return $this;
     }
 
-    //#[Vich\UploadableField(mapping: "product_image", fileNameProperty: "image",)]
-    //private ?File $imageFile = null;
+    #[Vich\UploadableField(mapping: "product_image", fileNameProperty: "image",)]
+    private ?File $imageFile = null;
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
@@ -177,4 +177,14 @@ class Product
 
         return $this;
     }
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
 }

@@ -243,10 +243,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->postalcode = $postalcode;
         return $this;
     }
-    public function __toString():String
-        {return $this->firstname.' '.$this->lastname;}
-    public function getFullName():String
-        {return $this->firstname.' '.$this->lastname;}
+    public function __toString(): string
+    {
+        return $this->firstname.' '.$this->lastname;
+    }
+
+    public function getFullName(): string
+    {
+        return $this->firstname.' '.$this->lastname;
+    }
 
     public function isVerified(): bool
     {
