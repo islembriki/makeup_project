@@ -17,7 +17,24 @@ class CartController extends AbstractController
             'total' => $cartService->getTotal(),
         ]);
     }
+// New route for updating all quantities at once
+    #[Route('/cart/update-all', name: 'cart_update_all')]
+    public function updateAll(Request $request, CartService $cartService): Response
+    {
+        $quantities = $request->request->all('quantities') ?: [];
 
+        foreach ($quantities as $productId => $quantity) {
+            $quantity = (int) $quantity;
+            if ($quantity > 0) {
+                $cartService->setQuantity($productId, $quantity);
+            } else {
+                $cartService->remove($productId);
+            }
+        }
+
+        $this->addFlash('success', 'Cart updated successfully!');
+        return $this->redirectToRoute('cart_index');
+    }
     #[Route('/cart/add/{id}', name: 'cart_add')]
     public function add(Request $request, $id, CartService $cartService): Response
     {

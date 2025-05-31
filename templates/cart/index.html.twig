@@ -55,10 +55,27 @@
             text-decoration: none;
             border-radius: 8px;
             transition: background-color 0.3s ease;
+            margin-right: 10px;
         }
 
         .checkout-link:hover {
             background-color: #571fa1;
+        }
+
+        .update-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .update-btn:hover {
+            background-color: #218838;
         }
     </style>
 </head>
@@ -66,24 +83,24 @@
 <div class="cart-container">
     <h1>🛒 Mon Panier</h1>
 
-    <ul>
-        {% for item in items %}
-            <li>
-                <form action="{{ path('cart_update', {'id': item.product.id}) }}" method="post" style="display: inline;">
+    <form action="{{ path('cart_update_all') }}" method="post">
+        <ul>
+            {% for item in items %}
+                <li>
                     {{ item.product.name }} -
-                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" style="width: 50px;">
+                    <input type="number" name="quantities[{{ item.product.id }}]" value="{{ item.quantity }}" min="1" style="width: 50px;">
                     * {{ item.product.price }}£
+                </li>
+            {% endfor %}
+        </ul>
 
-                    <button type="submit">Mettre à jour</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+        <button type="submit" class="update-btn">Update Total</button>
+    </form>
 
     <div class="total">Total : {{ total }}£</div>
 
-    <a href="{{ path('product_list') }}" class="checkout-link">Continue shopping </a>
+    <a href="{{ path('product_list') }}" class="checkout-link">Continue shopping</a>
+    <a href="{{ path('order_checkout') }}" class="checkout-link">Checkout</a>
 </div>
 </body>
-
 </html>
