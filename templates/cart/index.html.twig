@@ -1,49 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Checkout{% endblock %}
+{% block title %}Your Cart{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-    <h1 class="mb-4">Checkout</h1>
+<div class="container py-5">
+    <h1 class="mb-4 text-center">🛒 Your Shopping Cart</h1>
 
     {% if items is empty %}
-        <div class="alert alert-warning">
-            Your cart is empty. <a href="{{ path('product_list') }}">Browse products</a>.
+        <div class="alert alert-info text-center">
+            <h4 class="mb-3">Your cart is empty 😕</h4>
+            <a href="{{ path('product_list') }}" class="btn btn-outline-primary">Browse Products</a>
         </div>
     {% else %}
-        <table class="table table-bordered align-middle">
-            <thead class="table-dark">
-                <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th class="text-end">Unit Price</th>
-                    <th class="text-end">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-dark">
                     <tr>
-                        <td>{{ item.product.name }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td class="text-end">{{ item.product.price|number_format(2) }} €</td>
-                        <td class="text-end">{{ (item.product.price * item.quantity)|number_format(2) }} €</td>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Actions</th>
                     </tr>
-                {% endfor %}
-                <tr class="fw-bold">
-                    <td colspan="3" class="text-end">Total:</td>
-                    <td class="text-end">{{ total|number_format(2) }} €</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="text-end">
-            <a href="{{ path('order_checkout') }}" class="btn btn-success btn-lg">
-                <i class="bi bi-credit-card"></i> Buy Now
-            </a>
-
-            <div class="confirmation-box">
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td class="fw-semibold">{{ item.product.name }}</td>
+                            <td>
+                                <form method="post" action="{{ path('cart_update', {id: item.product.id}) }}" class="d-flex justify-content-center align-items-center gap-2">
+                                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control text-center" style="width: 70px;">
+                                    <button class="btn btn-sm btn-outline-primary" title="Update quantity">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>{{ item.product.price|number_format(2) }} €</td>
+                            <td class="fw-semibold">{{ (item.product.price * item.quantity)|number_format(2) }} €</td>
+                            <td>
+                                <a href="{{ path('cart_remove', {id: item.product.id}) }}" class="btn btn-sm btn-outline-danger" title="Remove from cart">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="table-light fw-bold">
+                        <td colspan="3" class="text-end">Total:</td>
+                        <td colspan="2">{{ total|number_format(2) }} €</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    
+
+        <div class="text-end mt-4">
+            <a href="{{ path('order_checkout') }}" class="btn btn-success btn-lg">
+                <i class="bi bi-credit-card"></i> Proceed to Checkout
+            </a>
         </div>
     {% endif %}
 </div>
