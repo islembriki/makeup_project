@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller; 
+namespace App\Controller;
 
 //c'est le controlleur du panier
 
@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-    #[Route('carte',name: 'cart_index')]
+    #[Route('/carte',name: 'cart_index')]
     public function index(CartService $cartService):Response
     {
         //recuperation des articles du paniers et le total

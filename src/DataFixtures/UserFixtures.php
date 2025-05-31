@@ -1,7 +1,5 @@
 <?php
-
 namespace App\DataFixtures;
-
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -25,7 +23,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
     {   $user1=new User();
         $user1->setEmail('aziza123@gmail.com');
         $user1->setPassword($this->passwordEncoder->hashPassword($user1,'123'));
-
+        $this->addReference('user_aziza123@gmail.com', $user1);
         $userAdmin=new User();
         $userAdmin->setEmail('admin123@gmail.com');
         $userAdmin->setRoles(['ROLE_ADMIN']);
@@ -43,4 +41,6 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
     {
         return ['groupUser'];
     }
+
+
 }

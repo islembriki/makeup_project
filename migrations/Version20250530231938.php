@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250530152023 extends AbstractMigration
+final class Version20250530231938 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,10 +21,10 @@ final class Version20250530152023 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
-            CREATE TABLE product (id INT AUTO_INCREMENT NOT NULL, category_id INT NOT NULL, name VARCHAR(50) NOT NULL, description VARCHAR(500) DEFAULT NULL, price DOUBLE PRECISION NOT NULL, image VARCHAR(1000) DEFAULT NULL, stock INT NOT NULL, INDEX IDX_D34A04AD12469DE2 (category_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+            ALTER TABLE product ADD updated_at DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)'
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE product ADD CONSTRAINT FK_D34A04AD12469DE2 FOREIGN KEY (category_id) REFERENCES category (id)
+            ALTER TABLE user ADD is_verified TINYINT(1) NOT NULL
         SQL);
     }
 
@@ -32,10 +32,10 @@ final class Version20250530152023 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
-            ALTER TABLE product DROP FOREIGN KEY FK_D34A04AD12469DE2
+            ALTER TABLE user DROP is_verified
         SQL);
         $this->addSql(<<<'SQL'
-            DROP TABLE product
+            ALTER TABLE product DROP updated_at
         SQL);
     }
 }
