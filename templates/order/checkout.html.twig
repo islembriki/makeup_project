@@ -1,8 +1,67 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('/images/landing.jpeg') center/cover no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-{% block title %}Commande{% endblock %}
+        .confirmation-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+        }
 
-{% block body %}
-    <h1>Confirmation de la commande</h1>
-    <p>Votre commande a été prise en compte.</p>
-{% endblock %}
+        .confirmation-box h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+
+        .confirmation-box p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+        }
+
+        .confirmation-box .checkmark {
+            font-size: 3em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .home-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6c2eb9;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-link:hover {
+            background-color: #571fa1;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-box">
+        <div class="checkmark">✔️</div>
+        <h1>Confirmation de la commande</h1>
+        <p>Votre commande a été prise en compte.</p>
+        <a href="{{ path('home') }}" class="home-link">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

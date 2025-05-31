@@ -1,17 +1,75 @@
-{#Afficher chaque produit ajouté au panier avec sa quantité et son prix,#}
-{# puis afficher le total, et un lien pour passer commande.#}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Panier</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('/images/landing.jpeg') center/cover no-repeat;
+            padding: 40px;
+            color: #333;
+        }
 
-{# templates/cart/index.html.twig #}
-<h1>Mon Panier</h1>
+        .cart-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
 
-<ul>
-    {% for item in items %}
-        <li>
-            {{ item.product.name }} - {{ item.quantity }} x {{ item.product.price }}€
-        </li>
-    {% endfor %}
-</ul>
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
 
-<p>Total : {{ total }} €</p>
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
 
-<a href="{{ path('order_checkout') }}">Passer la commande</a>
+        li {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .checkout-link {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #6c2eb9;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout-link:hover {
+            background-color: #571fa1;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <h1>🛒 Mon Panier</h1>
+        <ul>
+            <li>Red Velvet Lipstick - 1 x 15.99€</li>
+        </ul>
+        <div class="total">Total : 15.99 €</div>
+        <a href="{{ path('order_checkout') }}" class="checkout-link">Passer la commande</a>
+    </div>
+</body>
+</html>
