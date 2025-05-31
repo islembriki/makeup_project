@@ -20,6 +20,9 @@ class Product
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
