@@ -21,8 +21,8 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column(Types::DATETIME_MUTABLE,nullable: true)]
-    private ?\DateTimeInterface $CreatedAt = null;
+    #[ORM\Column(type :Types::DATETIME_MUTABLE,nullable: true)]
+    private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
@@ -39,7 +39,7 @@ class Order
     public function __construct()
     {
         $this->items = new ArrayCollection();
-        $this->CreatedAt = new \DateTime();
+        $this->createdAt = new \DateTime();
         $this->status = 'pending';
         $this->total = 0;
     }
@@ -63,12 +63,12 @@ class Order
 
     public function getCreatedAt(): ?\DateTime
     {
-        return $this->CreatedAt;
+        return $this->createdAt;
     }
 
     public function setCreatedAt(?\DateTime $CreatedAt): static
     {
-        $this->CreatedAt = $CreatedAt;
+        $this->createdAt = $CreatedAt;
 
         return $this;
     }
@@ -104,7 +104,6 @@ class Order
     {
         return $this->items;
     }
-
     public function addItem(OrderItem $item): static
     {
         if (!$this->items->contains($item)) {

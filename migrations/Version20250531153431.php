@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250531121721 extends AbstractMigration
+final class Version20250531153431 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,10 +21,7 @@ final class Version20250531121721 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
-            ALTER TABLE `order` ADD datetime VARCHAR(255) DEFAULT NULL
-        SQL);
-        $this->addSql(<<<'SQL'
-            ALTER TABLE product ADD updated_at DATETIME DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)'
+            ALTER TABLE `order` ADD created_at DATETIME DEFAULT NULL, DROP datetime
         SQL);
     }
 
@@ -32,10 +29,7 @@ final class Version20250531121721 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
-            ALTER TABLE `order` DROP datetime
-        SQL);
-        $this->addSql(<<<'SQL'
-            ALTER TABLE product DROP updated_at
+            ALTER TABLE `order` ADD datetime VARCHAR(255) DEFAULT NULL, DROP created_at
         SQL);
     }
 }

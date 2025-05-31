@@ -19,7 +19,7 @@
                         {#{% else %}#}
                             {# No image file for this product. #}
                         {#{% endif %}#}
-                        <img src="{{ asset('images/no-image.jpeg') }}" class="card-img-top" alt="No image available">
+                        <img src="{{ asset('images/products/' ~ product.image )}}" class="card-img-top" alt="No image available">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text text-truncate">{{ product.description }}</p>
