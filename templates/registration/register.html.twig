@@ -76,7 +76,7 @@
 
             <div class="form-check mb-3">
                 {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input', 'id': 'agreeTerms'}}) }}
-                <label class="form-check-label" for="agreeTerms">I agree to the terms and conditions</label>
+                <label class="form-check-label" for="agreeTerms">I agree to the <a href="{{ path('app_cgv') }}"target="_blank">terms and conditions</a></label>
                 {{ form_errors(registrationForm.agreeTerms) }}
             </div>
 
