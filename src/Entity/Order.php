@@ -39,7 +39,7 @@ class Order
     public function __construct()
     {
         $this->items = new ArrayCollection();
-        $this->madeat = new \DateTime();
+        $this->CreatedAt = new \DateTime();
         $this->status = 'pending';
         $this->total = 0;
     }
