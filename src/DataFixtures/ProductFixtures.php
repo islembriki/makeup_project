@@ -51,7 +51,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface,Fixtu
             ],
         ];
 
-        foreach ($productsData as $data) {
+        foreach ($productsData as $index => $data) {
             $product = new Product();
             $product->setName($data['name']);
             $product->setDescription($data['description']);
@@ -65,6 +65,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface,Fixtu
             //$product->setUpdatedAt(new DateTimeImmutable());
 
             $manager->persist($product);
+            $this->addReference('product_' . $index, $product);
         }
 
         $manager->flush();
