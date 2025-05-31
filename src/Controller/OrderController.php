@@ -25,12 +25,22 @@ class OrderController extends AbstractController
     public function myOrders(OrderRepository $orderRepo): Response
     {
         //recherche des commandes de l'utilisateur actuel
-        $orders = $orderRepo->findOrdersWithItemsByUser(['user' => $this->getUser()]);
+        $orders = $orderRepo->findOrdersWithItemsByUser($this->getUser());
+
+
 
         //afficher la liste dans le template
         return $this->render('order/my_orders.html.twig', [
             'orders' => $orders,
         ]);
+    }
+
+    #[Route('/checkout', name: 'order_checkout')]
+    public function checkout(): Response
+    {
+        // logique de traitement de la commande ici
+
+        return $this->render('order/checkout.html.twig');
     }
 }
 
