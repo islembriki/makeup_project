@@ -34,4 +34,10 @@
         </div>
     {% endif %}
 </div>
-{% endblock %}
+    <a href="{{ path('cart_index') }}"
+       class="position-fixed shadow d-flex justify-content-center align-items-center"
+       style="bottom: 40px; right: 20px; width: 60px; height: 60px; border-radius: 50%; z-index: 999;background-color: white;">
+        <i class="bi bi-cart2 fs-4 text-dark"></i>
+    </a>
+
+{%  endblock %}
