@@ -10,9 +10,16 @@
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">User Information</h5>
+            <a href="{{ path('app_account_edit') }}" class="btn btn-outline-primary mt-3">Edit My Info</a>
+
             <p><strong>Email:</strong> {{ user.email }}</p>
             {% if user.fullName is not empty %}
                 <p><strong>Name:</strong> {{ user.fullName }}</p>
+            {% endif %}
+            {% if user.phone is not empty %}
+                <p><strong>Phone:</strong> {{ user.phone }}</p>
+            {% else %}
+                <p><strong>Phone:</strong> Not provided</p>
             {% endif %}
             {% if user.address is not empty %}
                 <p><strong>Address:</strong> {{ user.address }}</p>
@@ -20,10 +27,15 @@
             {% if user.country is not empty %}
                 <p><strong>Country:</strong> {{ user.country }}</p>
             {% endif %}
-            {% if user.phone is not empty %}
-                <p><strong>Phone:</strong> {{ user.phone }}</p>
+            {% if user.city is not empty %}
+                <p><strong>City:</strong> {{ user.city }}</p>
             {% else %}
-                <p><strong>Phone:</strong> Not provided</p>
+                <p><strong>City:</strong> Not provided</p>
+            {% endif %}
+            {% if user.postalcode is not empty %}
+                <p><strong>Zip Code:</strong> {{ user.postalcode }}</p>
+            {% else %}
+                <p><strong>Zip Code:</strong> Not provided</p>
             {% endif %}
             
         </div>
