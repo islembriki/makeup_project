@@ -23,6 +23,7 @@ class CartService
     private function getCartKey(): string
     {
         $user = $this->security->getUser();
+        
         if ($user instanceof \App\Entity\User) { //check if we have an actual user or guest
             $userId = $user->getId();
         } else {
