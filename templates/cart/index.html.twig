@@ -52,11 +52,21 @@
             </table>
         </div>
 
+        <!-- Back to Products Button -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <a href="{{ path('product_list') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Products
+                </a>
+            </div>
+        </div>
+        
         <div class="text-end mt-4">
             <a href="{{ path('order_checkout') }}" class="btn btn-success btn-lg">
                 <i class="bi bi-credit-card"></i> Proceed to Checkout
             </a>
         </div>
+
     {% endif %}
 </div>
 {% endblock %}
