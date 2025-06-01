@@ -1,13 +1,11 @@
-{# filepath: templates/aboutus/index.html.twig #}
 {% extends 'base.html.twig' %}
+
 
 {% block title %}About Us{% endblock %}
 
 {% block stylesheets %}
     <style>
-
-
-        body{
+        body {
             background-image: url('{{ asset("images/landing.jpeg") }}');
             background-size: cover;
             background-position: center;
@@ -15,13 +13,13 @@
             background-repeat: no-repeat;
         }
         .about-container {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.95); /* stronger contrast */
             border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* stronger shadow */
             font-family: 'Segoe UI', sans-serif;
             max-width: 800px;
-            margin: auto;
+            margin: 80px auto 40px;
         }
 
         .about-container h1 {
@@ -67,7 +65,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container py-5">
+    <div class="container">
         <div class="about-container">
             <h1>About Us</h1>
             
@@ -77,13 +75,12 @@
             <ul>
                 <li>Email: <a href="mailto:hashandhash@gmail.com">hashandhash@ourshop.com</a></li>
                 <li>Phone: <a href="tel:+216234567890">+216 234 567 890</a></li>
-                <li>Instagram:     <span style="color: #007bff;">Our Instagram Account</span></li>
-                <li>Facebook:      <span style="color: #007bff;">Our Facebook Page</span></li>
+                <li>Instagram: <span style="color: #007bff;">Our Instagram Account</span></li>
+                <li>Facebook: <span style="color: #007bff;">Our Facebook Page</span></li>
                 <li>Address: 123 Paris Street, Tunis, Tunisia</li>
             </ul>
 
-            <a href="{{ path('app_contact') }}" class="btn btn-outline-primary">Contact Us</a>
-
+            <a href="{{ path('app_contact') }}" class="btn btn-outline-primary mt-3">Contact Us</a>
         </div>
     </div>
 {% endblock %}

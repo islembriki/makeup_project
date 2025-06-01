@@ -23,7 +23,7 @@ final class LoginController extends AbstractController
         }
 
 
-        return $this->render('product/home.html.twig', [
+        return $this->render('home/index.html.twig', [
             'controller_name' => 'LoginController',
         ]);
     }

@@ -3,18 +3,34 @@
 {% block title %}Welcome to Our Shop{% endblock %}
 
 {% block body %}
-    <div class="landing-hero text-white text-center d-flex align-items-center justify-content-center" style="height: 100vh; background: url('{{ asset('images/landing.jpeg') }}') center/cover no-repeat;">
-        <div class="bg-dark bg-opacity-50 p-4 rounded">
-            <h1 class="display-4">Find What Inspires You</h1>
-            <p class="lead">Unique products for unique people.</p>
-            <a href="#get-in-touch" class="btn btn-outline-light mt-3">
-                Get in touch ↓
-            </a>
+    
+    <div class="landing-hero text-center d-flex align-items-center justify-content-center" style="
+        height: 100vh;
+        background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 240, 245, 0.3)),
+                    url('{{ asset('images/background.jpeg') }}') center/cover no-repeat;
+        color: #4b3049;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        position: relative;
+    ">
+        <div class="bg-white bg-opacity-75 p-5 rounded shadow-lg" style="z-index: 1;">
+            <h1 class="display-4 fw-bold" style="font-family: 'Poppins', sans-serif;">Find What Inspires You</h1>
+            <p class="lead mb-4" style="font-family: 'Poppins', sans-serif;">Unique products for unique people.</p>
+            <a href="#get-in-touch" class="btn pastel-btn">Get in touch ↓</a>
         </div>
     </div>
-    <section id="get-in-touch" class="text-center p-5 bg-light">
-        <h2>Let's stay connected!</h2>
-        <p>Click <a href="{{ path('app_aboutus') }}">here</a> if you want to learn more about us or contact us directly!</p>
-        
+
+
+    <section id="get-in-touch" class="text-center py-5" style="background-color: #fef6f9;">
+        <div class="container">
+            <h2 class="fw-bold mb-3" style="color: #d678a7; font-family: 'Poppins', sans-serif;">Let’s Stay Connected </h2>
+            <p class="mb-4" style="font-size: 1.1rem; color: #6b4e6f;">
+                We’d love to hear from you! <br>
+                Learn more <a href="{{ path('app_aboutus') }}" class="text-decoration-underline" style="color: #ae6e94;">about us</a> or reach out directly 💬
+            </p>
+            <a href="{{ path('app_aboutus') }}" class="btn pastel-btn px-4 py-2">Contact Us</a>
+        </div>
     </section>
 {% endblock %}
