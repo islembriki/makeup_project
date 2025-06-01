@@ -23,7 +23,11 @@ class CartService
     private function getCartKey(): string
     {
         $user = $this->security->getUser();
+
+        /** @var \App\Entity\User|null $user */
         $userId = $user ? $user->getId() : 'guest';
+
+        
         return 'cart_' . $userId;
     }
 
