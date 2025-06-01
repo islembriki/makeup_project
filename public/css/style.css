@@ -61,3 +61,101 @@ footer {
     background-color: #f8c8dc;
     color: #4b3049;
 }
+
+.pastel-btn {
+    background-color: #f9a1bc;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.pastel-btn:hover {
+    background-color: #f67a9b;
+    color: white;
+}
+
+.landing-hero h1, .landing-hero p {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Soft Card Styling */
+.card {
+    border-radius: 1rem;
+    border: none;
+    background-color: #fff0f5; /* light pastel pink */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(223, 177, 207, 0.3);
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #d678a7;
+    border: none;
+    border-radius: 2rem;
+}
+
+.btn-primary:hover {
+    background-color: #c55d94;
+}
+
+.btn-secondary {
+    background-color: #f3c6d3;
+    color: #5f3e50;
+    border: none;
+    border-radius: 2rem;
+}
+
+.btn-secondary:hover {
+    background-color: #e8a5bb;
+    color: white;
+}
+
+/* Filter Section Background */
+form {
+    background: #fff7fa;
+    border: 1px solid #f3d7e2;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+/* Titles */
+h1 {
+    color: #b45790;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card {
+    opacity: 0;
+    animation: fadeInCard 0.8s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+
+@keyframes fadeInCard {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* so all product images have the same style */
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0; /* top corners rounded to match card */
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
