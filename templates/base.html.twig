@@ -78,6 +78,7 @@
     {# Toast flash messages (bottom right) #}
     <div class="toast-container position-fixed" style="bottom: 80px; right: 20px; z-index: 1055;">
 
+        <!--visually, toast is more user friendly than a pop up message -->
         {% for label, messages in app.flashes %}
             {% set toastClass = {
                 'success': 'bg-success',
