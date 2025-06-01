@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -28,7 +29,7 @@ class ProductCrudController extends AbstractCrudController
         $fields = [
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
-            TextEditorField::new('description')->hideOnIndex(),
+            TextAreaField::new('description')->hideOnIndex(),
             MoneyField::new('price')
                 ->setCurrency('USD')
                 ->setStoredAsCents(false),
