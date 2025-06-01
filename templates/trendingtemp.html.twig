@@ -1,0 +1,31 @@
+{# filepath: templates/trendingtemp.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Trending Collection{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center" style="color: #d678a7;">Trending Collection</h1>
+    <p class="lead text-center mb-5">Discover our most popular and discounted products!</p>
+    <div class="row">
+        
+        {
+        {% for product in trendingProducts %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ asset('images/products/' ~ product.image) }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description|u.truncate(80) }}</p>
+                        <span class="badge bg-success">{{ product.price }} USD</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        }
+        <div class="col-12 text-center">
+            <p class="text-muted">Trending products will appear here soon!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
