@@ -4,7 +4,7 @@ namespace App\Service;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\ProductRepository;
-//use Symfony\Component\Security\Core\Security;
+
 
 class CartService
 {
@@ -23,11 +23,16 @@ class CartService
     private function getCartKey(): string
     {
         $user = $this->security->getUser();
-        $userId = $user ? $user->getId() : 'guest';
+        
+        if ($user instanceof \App\Entity\User) { //check if we have an actual user or guest
+            $userId = $user->getId();
+        } else {
+            $userId = 'guest';
+        }
         return 'cart_' . $userId;
     }
 
-    // Add product to cart (increments quantity)
+    // addss product to cart 
     public function add(int $productId, int $quantity = 1): void
     {
         $cartKey = $this->getCartKey();
@@ -41,7 +46,7 @@ class CartService
         $this->session->set($cartKey, $cart);
     }
 
-    // Set exact quantity for a product
+    // set/change exact quantity for a product
     public function setQuantity(int $productId, int $quantity): void
     {
         $cartKey = $this->getCartKey();
@@ -56,7 +61,7 @@ class CartService
         $this->session->set($cartKey, $cart);
     }
 
-    // Remove product completely from cart
+    
     public function remove(int $productId): void
     {
         $cartKey = $this->getCartKey();
@@ -69,7 +74,7 @@ class CartService
         $this->session->set($cartKey, $cart);
     }
 
-    // Decrease quantity by 1
+   //decrease quantity (by 1 dima)
     public function decrement(int $productId): void
     {
         $cartKey = $this->getCartKey();
@@ -86,7 +91,7 @@ class CartService
         $this->session->set($cartKey, $cart);
     }
 
-    // Get cart with product details
+    
     public function getCart(): array
     {
         $cartKey = $this->getCartKey();
@@ -106,7 +111,7 @@ class CartService
         return $cartWithData;
     }
 
-    // Calculate total price
+    // total price
     public function getTotal(): float
     {
         $total = 0;
@@ -118,7 +123,7 @@ class CartService
         return $total;
     }
 
-    // Clear the cart
+    
     public function clear(): void
     {
         $cartKey = $this->getCartKey();

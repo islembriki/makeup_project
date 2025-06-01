@@ -3,13 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Order;
-use App\Entity\User;  // Add this import
+use App\Entity\User; 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<Order>
- */
 class OrderRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -17,17 +14,17 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    //displays later on all the history of commands a user did
+    //displays later the history of commands a user did
     public function findOrdersWithItemsByUser(User $user): array
     {
         return $this->createQueryBuilder('o')
-            ->leftJoin('o.items', 'oi')  // Changed from 'o.orderItems' to 'o.items'
+            ->leftJoin('o.items', 'oi')  
             ->addSelect('oi')
             ->leftJoin('oi.product', 'p')
             ->addSelect('p')
             ->andWhere('o.user = :user')
             ->setParameter('user', $user)
-            ->orderBy('o.createdAt', 'DESC')  // Changed from 'o.CreatedAt' to 'o.createdAt'
+            ->orderBy('o.createdAt', 'DESC')  
             ->getQuery()
             ->getResult();
     }

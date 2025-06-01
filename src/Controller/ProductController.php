@@ -4,8 +4,6 @@
 
 namespace App\Controller;
 use App\Entity\Product;
-
-
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractController
 {
-    
+
     #[Route('/products', name: 'product_list')]
     public function list(ProductRepository $productRepository, Request $request): Response
     {
-        // Safely read and cast query parameters
+        // cast query parameters so we don't face type problems
         $name = $request->query->get('name');
         $categoryIdParam = $request->query->get('category');
         $categoryId = is_numeric($categoryIdParam) ? (int)$categoryIdParam : null;
@@ -29,15 +27,15 @@ class ProductController extends AbstractController
         $maxPriceParam = $request->query->get('maxPrice');
         $maxPrice = is_numeric($maxPriceParam) ? (float)$maxPriceParam : null;
 
-        $priceOrder = strtoupper($request->query->get('priceOrder', '')); // ASC or DESC
+        $priceOrder = strtoupper($request->query->get('priceOrder', '')); 
         if (!in_array($priceOrder, ['ASC', 'DESC'])) {
             $priceOrder = null;
         }
 
-        // Get categories to populate filter dropdown
+        // Get all categories from the db for dropdown
         $categories = $productRepository->getAllCategoriesUsed();
 
-        // Fetch filtered products
+        // get filtered products with the filterProducts method
         $products = $productRepository->filterProducts($categoryId, $name, $minPrice, $maxPrice, $priceOrder);
 
         return $this->render('product/list.html.twig', [
@@ -52,16 +50,16 @@ class ProductController extends AbstractController
     }
 
 
+    //selectionner un produit pour afficher son detail 
     #[Route('/products/{id}', name: 'product_show')]
     public function show(Product $product): Response
     {
-    // Thanks to Symfony's param converter, $product is automatically fetched by id
         return $this->render('product/show.html.twig', [
             'product' => $product,
         ]);
     }
 
-    
+
 
 }
 

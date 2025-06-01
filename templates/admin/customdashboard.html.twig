@@ -1,15 +1,62 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block content %}
-    <div style="display: flex; flex-direction: column; align-items: center;">
-        <h1 style="text-align: center; margin-bottom: 30px;">
-            Bienvenue dans le tableau de bord d'administration
-        </h1>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
-        <div style="width: 60%;">
+        body {
+            background-color: #fff0f5;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .backoffice-container {
+            align-items: center;
+             padding: 40px;
+            background: white;
+            display: flex;
+               flex-direction: column;
+            border-radius: 16px;
+             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+            margin: 30px auto;
+            max-width: 900px;
+        }
+
+
+        .backoffice-container p {
+
+            color: #6c757d;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+    .backoffice-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #d63384;
+        }
+
+        .dashboard-image {
+            width: 60%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(214, 51, 132, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-image:hover {
+            transform: scale(1.02);
+        }
+    </style>
+
+    <div class="backoffice-container">
+        <h1>Welcome to the Backoffice of our Beauty Brand</h1>
+        <p>Manage all CRUD operations on our products, categories, orders, and more.</p>
+
+        <div class="dashboard-image">
             <img src="{{ asset('images/imagedashbord.png') }}"
-                 alt="Image du tableau de bord"
-                 style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);" />
+                 alt="Dashboard Preview"
+                 style="width: 100%; height: auto;" />
         </div>
     </div>
 {% endblock %}
