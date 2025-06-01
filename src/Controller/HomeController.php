@@ -1,5 +1,6 @@
 <?php
-// src/Controller/HomeController.php
+
+
 
 namespace App\Controller;
 
@@ -9,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    //redirection home page
     #[Route('/', name: 'home')]
     public function index(): Response
     {

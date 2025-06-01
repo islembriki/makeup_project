@@ -1,6 +1,5 @@
 <?php
 
-// this is used to show the user account info
 
 namespace App\Controller;
 
@@ -15,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\OrderRepository;
 use App\Form\UserType;
  
+//this is used for the account part , when a user wants to access his account info/history
 
 class AccountController extends AbstractController
 {
@@ -27,7 +27,7 @@ class AccountController extends AbstractController
             throw $this->createAccessDeniedException('You must be logged in.');
         }
 
-        // Appel à la méthode personnalisée
+        // appel a la methode personnalise dans orderRepo
         $orders = $orderRepo->findOrdersWithItemsByUser($user);
 
         return $this->render('account/index.html.twig', [
@@ -36,6 +36,8 @@ class AccountController extends AbstractController
         ]);
     }
 
+
+    //redirection a la page de edit si on cherche a changer son info
     #[Route('/account/edit', name: 'app_account_edit')]
     public function edit(Request $request, EntityManagerInterface $em): Response
     {

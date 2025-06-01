@@ -1,6 +1,6 @@
 <?php
 
-//this form is used when the user wants to update his info
+//when the user wants to update his info
 namespace App\Form;
 
 use App\Entity\User;

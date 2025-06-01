@@ -6,9 +6,7 @@ use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<Product>
- */
+
 class ProductRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -32,9 +30,8 @@ class ProductRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    /**
-     * Get all products by category
-     */
+
+    /* Get all products by category*/
     public function findByCategory(string $category): array
     {
         return $this->createQueryBuilder('p')
@@ -44,9 +41,7 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /**
-     * Flexible filter for products by multiple optional fields
-     */
+    /*Flexible filter for products by multiple optional fields */
     public function filterProducts(?int $categoryId = null, ?string $name = null, ?float $minPrice = null, ?float $maxPrice = null, ?string $priceOrder = null): array
     {
         $qb = $this->createQueryBuilder('p')
@@ -79,9 +74,7 @@ class ProductRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    /**
-     * Find one product by exact name
-     */
+   
     public function findOneByName(string $name): ?Product
     {
         return $this->createQueryBuilder('p')
@@ -91,9 +84,7 @@ class ProductRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
-    /**
-     * Get all products ordered by price ASC or DESC
-     */
+    
     public function findAllOrderedByPrice(string $order = 'ASC'): array
     {
         return $this->createQueryBuilder('p')

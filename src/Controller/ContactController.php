@@ -1,6 +1,6 @@
 <?php
 
-// src/Controller/ContactController.php
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -12,6 +12,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Response;
 
+//this is used to send messages as emails to the ecommerce email
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
@@ -20,7 +21,7 @@ class ContactController extends AbstractController
         $user = $this->getUser();
         /** @var \App\Entity\User $user */
 
-        // Prefill data if user is logged in
+        // prefill data if user is logged in
         $form = $this->createForm(ContactType::class, [
             'email' => $user ? $user->getEmail() : '',
         ]);
