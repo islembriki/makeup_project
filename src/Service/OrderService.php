@@ -7,7 +7,7 @@ use App\Entity\Order;
 use App\Entity\OrderItem;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class OrderService
 {
@@ -16,7 +16,7 @@ class OrderService
     private $security;
 
     //constructeur: injecte les services necessaires
-    public function __construct(EntityManagerInterface $em, CartService $cartService, Security $security)
+    public function __construct(EntityManagerInterface $em, CartService $cartService,Security $security)
     {
         $this->em = $em; // Pour insérer en base de données
         $this->cartService = $cartService; // Pour accéder aux articles du panier
