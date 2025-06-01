@@ -11,10 +11,21 @@
         <div class="card-body">
             <h5 class="card-title">User Information</h5>
             <p><strong>Email:</strong> {{ user.email }}</p>
-            {% if user.fullName is defined %}
+            {% if user.fullName is not empty %}
                 <p><strong>Name:</strong> {{ user.fullName }}</p>
             {% endif %}
-            {# Add more user info here if needed #}
+            {% if user.address is not empty %}
+                <p><strong>Address:</strong> {{ user.address }}</p>
+            {% endif %}
+            {% if user.country is not empty %}
+                <p><strong>Country:</strong> {{ user.country }}</p>
+            {% endif %}
+            {% if user.phone is not empty %}
+                <p><strong>Phone:</strong> {{ user.phone }}</p>
+            {% else %}
+                <p><strong>Phone:</strong> Not provided</p>
+            {% endif %}
+            
         </div>
     </div>
 
