@@ -4,9 +4,10 @@ body {
     color: #4b3049;
 }
 
+
 .navbar {
     background-color: #f8c8dc !important;
-    border-bottom: 2px solid #f9a1bc;
+    border-bottom: 2px solid #f9a1bc; 
 }
 
 .navbar-brand {
