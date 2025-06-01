@@ -6,18 +6,18 @@ body {
 
 
 .navbar {
-    background-color: #f8c8dc !important;
-    border-bottom: 2px solid #f9a1bc; 
+    background-color: black !important;
+    border-bottom: 2px solid #f9a1bc;
 }
 
 .navbar-brand {
-    color: #4b3049 !important;
+    color: white !important;
     font-weight: 600;
     font-size: 1.6rem;
 }
 
 .nav-link {
-    color: #4b3049 !important;
+    color: white !important;
     transition: color 0.3s ease;
 }
 
@@ -161,7 +161,7 @@ h1 {
     box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
 }
 
-/* style for the selected product poge */ 
+/* style for the selected product poge */
 .product-image-container img {
     height: 400px;
     width: 100%;
@@ -243,7 +243,7 @@ h1 {
     border-color: #b71c1c;
 }
 .text-pastel-lavender {
-  color: #b7a8d1; 
+  color: #b7a8d1;
 }
 
 
@@ -319,7 +319,7 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.btn-success:hover, 
+.btn-success:hover,
 .btn-success:focus {
   background-color: #8bc89b;
   border-color: #74b07c;

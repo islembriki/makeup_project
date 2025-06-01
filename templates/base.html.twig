@@ -13,7 +13,7 @@
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ path('home') }}">Hash&Hash Brand</a>
+            <a class="navbar-brand" href="{{ path('home') }}"><img src="/images/giraffe.jpg" alt="icone" style="width:50px; vertical-align:middle;margin-right: 10px">Hash&Hash </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -72,7 +72,7 @@
 
     {# Toast flash messages (bottom right) #}
     <div class="toast-container position-fixed" style="bottom: 80px; right: 20px; z-index: 1055;">
-        
+
         {% for label, messages in app.flashes %}
             {% set toastClass = {
                 'success': 'bg-success',
@@ -80,7 +80,7 @@
                 'warning': 'bg-warning text-dark',
                 'info': 'bg-info text-dark'
             }[label] ?? 'bg-secondary' %}
-            
+
             {% for message in messages %}
                 <div class="toast align-items-center text-white {{ toastClass }} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
                     <div class="d-flex">
