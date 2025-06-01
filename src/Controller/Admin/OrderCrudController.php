@@ -15,7 +15,7 @@ class OrderCrudController extends AbstractCrudController
         return Order::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -24,5 +24,5 @@ class OrderCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
-    */
+    
 }
