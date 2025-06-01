@@ -2,79 +2,183 @@
 
 {% block title %}My Account{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        .container {
+            max-width: 800px;
+        }
+
+        /* Card without borders, subtle shadow */
+        .card {
+            background-color: #fff;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 30px 30px 40px;
+            margin-bottom: 50px;
+        }
+
+        /* User info section */
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .user-info p {
+            margin: 0;
+        }
+
+        /* Edit button aligned top right inside card */
+        .edit-button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        /* Order history header */
+        h2 {
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        /* Order card */
+        .order-card {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .order-status {
+            background-color: #6c757d;
+            color: white;
+            text-transform: capitalize;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            align-self: center;
+        }
+
+        /* Order items container */
+        .order-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px; /* space between items */
+            margin-bottom: 15px;
+        }
+
+        .order-item {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .order-item strong {
+            color: #222;
+        }
+
+        /* Total amount */
+        .order-total {
+            text-align: right;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #222;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 576px) {
+            .user-info {
+                font-size: 1rem;
+            }
+            .order-header {
+                flex-direction: column;
+                gap: 6px;
+            }
+            .order-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
 <div class="container mt-5">
 
     <h1 class="mb-4">My Account</h1>
 
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">User Information</h5>
-            <a href="{{ path('app_account_edit') }}" class="btn btn-outline-primary mt-3">Edit My Info</a>
+    <div class="card">
+        <div class="edit-button-container">
+            <a href="{{ path('app_account_edit') }}" class="btn btn-outline-primary">Edit My Info</a>
+        </div>
 
+        <div class="user-info">
             <p><strong>Email:</strong> {{ user.email }}</p>
             {% if user.fullName is not empty %}
                 <p><strong>Name:</strong> {{ user.fullName }}</p>
             {% endif %}
-            {% if user.phone is not empty %}
-                <p><strong>Phone:</strong> {{ user.phone }}</p>
-            {% else %}
-                <p><strong>Phone:</strong> Not provided</p>
-            {% endif %}
+            <p><strong>Phone:</strong> {{ user.phone is not empty ? user.phone : 'Not provided' }}</p>
             {% if user.address is not empty %}
                 <p><strong>Address:</strong> {{ user.address }}</p>
             {% endif %}
             {% if user.country is not empty %}
                 <p><strong>Country:</strong> {{ user.country }}</p>
             {% endif %}
-            {% if user.city is not empty %}
-                <p><strong>City:</strong> {{ user.city }}</p>
-            {% else %}
-                <p><strong>City:</strong> Not provided</p>
-            {% endif %}
-            {% if user.postalcode is not empty %}
-                <p><strong>Zip Code:</strong> {{ user.postalcode }}</p>
-            {% else %}
-                <p><strong>Zip Code:</strong> Not provided</p>
-            {% endif %}
-            
+            <p><strong>City:</strong> {{ user.city is not empty ? user.city : 'Not provided' }}</p>
+            <p><strong>Zip Code:</strong> {{ user.postalcode is not empty ? user.postalcode : 'Not provided' }}</p>
         </div>
     </div>
 
-    <h2 class="mb-3">Order History</h2>
+    <h1 class="mb-4">My History</h1>
 
     {% if orders is empty %}
         <div class="alert alert-info">You have no orders yet.</div>
     {% else %}
         {% for order in orders %}
-            <div class="card mb-3 shadow-sm">
-                <div class="card-header d-flex justify-content-between">
-                    <div>
-                        <strong>Order #{{ order.id }}</strong> — {{ order.createdAt|date('d/m/Y H:i') }}
-                    </div>
-                    <span class="badge bg-secondary">{{ order.status|capitalize }}</span>
+            <div class="order-card">
+                <div class="order-header">
+                    <div>Order #{{ order.id }} — {{ order.createdAt|date('d/m/Y H:i') }}</div>
+                    <div class="order-status">{{ order.status|capitalize }}</div>
                 </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        {% for item in order.items %}
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <strong>{{ item.product.name }}</strong><br>
-                                    <small class="text-muted">{{ item.quantity }} × {{ item.product.price|number_format(2, '.', ' ') }} €</small>
-                                </div>
-                                <div class="fw-bold">
-                                    {{ (item.quantity * item.product.price)|number_format(2, '.', ' ') }} €
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
+
+                <div class="order-items">
+                    {% for item in order.items %}
+                        <div class="order-item">
+                            <div><strong>{{ item.product.name }}</strong> &times; {{ item.quantity }}</div>
+                            <div>{{ (item.quantity * item.product.price)|number_format(2, '.', ' ') }} €</div>
+                        </div>
+                    {% endfor %}
                 </div>
-                <div class="card-footer text-end">
-                    <strong>Total: {{ order.total|number_format(2, '.', ' ') }} €</strong>
-                </div>
+
+                <div class="order-total">Total: {{ order.total|number_format(2, '.', ' ') }} €</div>
             </div>
         {% endfor %}
     {% endif %}
 
 </div>
 {% endblock %}
+
+
