@@ -159,3 +159,184 @@ h1 {
     border-radius: 1rem 1rem 0 0; /* top corners rounded to match card */
     box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
 }
+
+/* style for the selected product poge */ 
+.product-image-container img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 8px 15px rgba(255, 182, 193, 0.3); /* light pink shadow */
+    transition: transform 0.3s ease;
+}
+
+.product-image-container img:hover {
+    transform: scale(1.05);
+}
+
+.product-details {
+    background-color: #fff0f6; /* pastel pink background */
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 30px rgba(255, 182, 193, 0.15);
+}
+
+.price-section h3 {
+    color: #d6336c; /* a soft rose red */
+    font-weight: 700;
+}
+
+.cart-actions {
+    background-color: #fce4ec; /* very light pink */
+    border: 1px solid #f8bbd0;
+}
+
+.cart-actions .btn-outline-primary {
+    color: #d6336c;
+    border-color: #d6336c;
+}
+
+.cart-actions .btn-outline-primary:hover {
+    background-color: #d6336c;
+    color: white;
+    border-color: #d6336c;
+}
+
+.cart-actions .btn-success {
+    background-color: #f8bbd0;
+    border-color: #f48fb1;
+    color: #880e4f;
+}
+
+.cart-actions .btn-success:hover {
+    background-color: #d6336c;
+    color: white;
+    border-color: #b71c1c;
+}
+
+.alert-info {
+    background-color: #f3e5f5;
+    border-color: #ce93d8;
+    color: #6a1b9a;
+}
+
+.alert-info a {
+    color: #6a1b9a;
+    text-decoration: underline;
+}
+
+.alert-info a:hover {
+    color: #4a148c;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: #fce4ec;
+    border-color: #f8bbd0;
+    color: #d6336c;
+}
+
+.btn-secondary:hover {
+    background-color: #d6336c;
+    color: white;
+    border-color: #b71c1c;
+}
+.text-pastel-lavender {
+  color: #b7a8d1; 
+}
+
+
+/* this is styling for the cart page */
+
+.table thead th {
+  background-color: #f3e8f7; /* very light pastel lilac/pink */
+  color: #6f5474;            /* soft muted purple, easier on the eyes */
+  font-weight: 600;
+  border-bottom: none;
+  text-align: center;
+  padding: 1rem 0.75rem;
+}
+
+
+.table thead th {
+  border-bottom: 2px solid #d7c0e6;
+}
+
+.table-dark {
+  background-color: #f8f0f8 !important; /* very light pastel lavender */
+  color: #5a4d5a !important; /* muted dark purple for text */
+}
+
+/* Table rows hover */
+.table-hover tbody tr:hover {
+  background-color: #f1e7f1; /* pastel lavender hover */
+}
+
+/* Buttons pastel styling */
+.btn-outline-primary {
+  color: #7d6b7d;
+  border-color: #bca7bc;
+}
+
+.btn-outline-primary:hover {
+  background-color: #bca7bc;
+  color: #fff;
+  border-color: #bca7bc;
+}
+
+.btn-outline-danger {
+  color: #a66a6a;
+  border-color: #d2a2a2;
+}
+
+.btn-outline-danger:hover {
+  background-color: #d2a2a2;
+  color: #fff;
+  border-color: #d2a2a2;
+}
+
+.btn-secondary {
+  background-color: #e7e1e7;
+  color: #6a5d6a;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #d0c5d0;
+  color: #442f44;
+}
+
+.btn-success {
+  background-color: #a8d5ba; /* soft pastel green */
+  border-color: #8bc89b;
+  color: #2e4a2b;
+  font-weight: 500;
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success:hover, 
+.btn-success:focus {
+  background-color: #8bc89b;
+  border-color: #74b07c;
+  color: #1b2a18;
+  outline: none;
+}
+
+/* Quantity input */
+input[type="number"].form-control {
+  border: 1px solid #bca7bc;
+  background-color: #faf5fb;
+  color: #5a4d5a;
+}
+
+/* Total row */
+.table-light {
+  background-color: #f9f6fa !important;
+  color: #5a4d5a !important;
+}
+
+
