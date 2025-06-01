@@ -47,28 +47,33 @@ class ProductRepository extends ServiceEntityRepository
     /**
      * Flexible filter for products by multiple optional fields
      */
-    public function filterProducts(?string $category = null, ?string $name = null, ?float $minPrice = null, ?float $maxPrice = null): array
+    public function filterProducts(?int $categoryId = null, ?string $name = null, ?float $minPrice = null, ?float $maxPrice = null, ?string $priceOrder = null): array
     {
-        $qb = $this->createQueryBuilder('p');
+        $qb = $this->createQueryBuilder('p')
+            ->join('p.category', 'c');
 
-        if ($category !== null) {
-            $qb->andWhere('p.category = :category')
-                ->setParameter('category', $category);
+        if ($categoryId !== null) {
+            $qb->andWhere('c.id = :categoryId')
+            ->setParameter('categoryId', $categoryId);
         }
 
         if ($name !== null) {
             $qb->andWhere('p.name LIKE :name')
-                ->setParameter('name', '%' . $name . '%');
+            ->setParameter('name', '%' . $name . '%');
         }
 
         if ($minPrice !== null) {
             $qb->andWhere('p.price >= :minPrice')
-                ->setParameter('minPrice', $minPrice);
+            ->setParameter('minPrice', $minPrice);
         }
 
         if ($maxPrice !== null) {
             $qb->andWhere('p.price <= :maxPrice')
-                ->setParameter('maxPrice', $maxPrice);
+            ->setParameter('maxPrice', $maxPrice);
+        }
+
+        if (in_array($priceOrder, ['ASC', 'DESC'])) {
+            $qb->orderBy('p.price', $priceOrder);
         }
 
         return $qb->getQuery()->getResult();
@@ -97,6 +102,18 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+    public function getAllCategoriesUsed(): array
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT DISTINCT c
+                FROM App\Entity\Category c
+                JOIN c.products p
+                ORDER BY c.name ASC'
+            )
+            ->getResult();
+    }
 
 
 
