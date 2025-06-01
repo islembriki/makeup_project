@@ -1,0 +1,63 @@
+body {
+    background-color: #fff0f5;
+    font-family: 'Poppins', sans-serif;
+    color: #4b3049;
+}
+
+.navbar {
+    background-color: #f8c8dc !important;
+    border-bottom: 2px solid #f9a1bc;
+}
+
+.navbar-brand {
+    color: #4b3049 !important;
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.nav-link {
+    color: #4b3049 !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #b392ac !important;
+}
+
+.btn {
+    background-color: #f9a1bc;
+    border: none;
+    color: white;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #f67a9b;
+}
+
+.card {
+    background-color: #fffaf0;
+    border: 1px solid #f9a1bc;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.toast-success {
+    background-color: #c8facc !important;
+    color: #2b4c3f !important;
+}
+
+.toast-error {
+    background-color: #f8d7da !important;
+    color: #842029 !important;
+}
+
+.toast-info {
+    background-color: #d6eaff !important;
+    color: #084298 !important;
+}
+
+footer {
+    background-color: #f8c8dc;
+    color: #4b3049;
+}
