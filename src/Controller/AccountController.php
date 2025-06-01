@@ -10,10 +10,11 @@ use App\Entity\Order;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\OrderRepository;
+use App\Form\UserType;
  
-
 
 class AccountController extends AbstractController
 {
@@ -34,6 +35,25 @@ class AccountController extends AbstractController
             'orders' => $orders,
         ]);
     }
+
+    #[Route('/account/edit', name: 'app_account_edit')]
+    public function edit(Request $request, EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+
+            $this->addFlash('success', 'Your information has been updated.');
+            return $this->redirectToRoute('app_account');
+        }
+
+        return $this->render('account/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+}
 }
 
 ?>
