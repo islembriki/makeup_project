@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250531153431 extends AbstractMigration
+final class Version20250601111604 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,7 +21,7 @@ final class Version20250531153431 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
-            ALTER TABLE `order` ADD created_at DATETIME DEFAULT NULL, DROP datetime
+            ALTER TABLE `order` ADD CONSTRAINT FK_F5299398A76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE SET NULL
         SQL);
     }
 
@@ -29,7 +29,7 @@ final class Version20250531153431 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
-            ALTER TABLE `order` ADD datetime VARCHAR(255) DEFAULT NULL, DROP created_at
+            ALTER TABLE `order` DROP FOREIGN KEY FK_F5299398A76ED395
         SQL);
     }
 }
